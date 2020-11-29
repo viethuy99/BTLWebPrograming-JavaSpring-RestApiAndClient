@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layoutDriver :: head"></head>
+<body>
+	<nav th:replace="layoutDriver :: header"></nav>
+
+	<div class="container main-content list">
+		<div th:if="${success}"
+			class="row alert alert-success alert-dismissible">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+			<span th:text="${success}"></span>
+		</div>
+		<div class="row">
+			<a th:href="@{/driver/create}" class="btn btn-success pull-left">
+				<span class="glyphicon glyphicon-plus"></span> Add new driver
+			</a>
+			<form class="form-inline pull-right" action="#"
+				th:action="@{/driver/search}" method="GET">
+				<div class="form-group">
+					<input type="text" class="form-control" name="s"
+						placeholder="Type driver name..." />
+				</div>
+				<button type="submit" class="btn btn-primary">Search</button>
+			</form>
+		</div>
+		<th:block th:if="${#lists.isEmpty(drivers)}">
+			<h3>No driver</h3>
+		</th:block>
+
+		<th:block th:unless="${#lists.isEmpty(drivers)}">
+			<div class="row">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>drivername</th>
+							<th>idcard</th>
+							<th>drivercode</th>
+							<th>license</th>
+							<th>address</th>
+							<th>birth</th>
+							<th>serniority</th>
+							<th>Edit</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="contact,iterStat : ${drivers}">
+							<td th:text="${iterStat.count}"></td>
+<!-- 							<td th:text="${contact.id}"></td> -->
+							<td th:text="${contact.drivername}"></td>
+							<td th:text="${contact.idcard}"></td>
+							<td th:text="${contact.drivercode}"></td>
+							<td th:text="${contact.license}"></td>
+							<td th:text="${contact.address}"></td>
+							<td th:text="${contact.birth}"></td>
+							<td th:text="${contact.serniority}"></td>
+							<td><a th:href="@{/driver/{id}/edit(id=${contact.id})}"><span
+									class="glyphicon glyphicon-pencil"></span></a></td>
+							<td><a th:href="@{/driver/{id}/delete(id=${contact.id})}"><span
+									class="glyphicon glyphicon-trash"></span></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</th:block>
+	</div>
+	<!-- /.container -->
+
+	<footer th:replace="layoutDriver :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layoutDriver :: head"></head>
+<body>
+    <nav th:replace="layoutDriver :: header"></nav>
+    <div class="container main-content form">
+        <div class="row">
+          <form action="#" th:action="@{/driver/save}" th:object="${driver}"
+		    method="POST" novalidate="novalidate">
+		    <input type="hidden" th:field="*{id}" />
+<!-- 		    <div class="form-group"> -->
+<!-- 		        <label>Name</label>  -->
+<!-- 		        <input type="text" class="form-control" th:field="*{id}" />  -->
+<!-- 		    </div> -->
+		    <div class="form-group">
+		        <label>drivername</label> 
+		        <input type="text" class="form-control" th:field="*{drivername}" />
+		    </div>
+		    <div class="form-group">
+		        <label>idcard</label> 
+		        <input type="text" class="form-control" th:field="*{idcard}" /> 
+		    </div>
+		    <div class="form-group">
+		        <label>drivercode</label> 
+		        <input type="text" class="form-control" th:field="*{drivercode}" />
+		    </div>
+		    <div class="form-group">
+		        <label>license</label> 
+		        <input type="text" class="form-control" th:field="*{license}" /> 
+		    </div>
+		    <div class="form-group">
+		        <label>address</label> 
+		        <input type="text" class="form-control" th:field="*{address}" />
+		    </div>
+<!-- 		    <div class="form-group"> -->
+<!-- 		        <label>birth</label>  -->
+<!-- 		        <input type="text" class="form-control" th:field="*{birth}" />  -->
+<!-- 		    </div> -->
+		    <div class="form-group">
+		        <label>serniority</label> 
+		        <input type="text" class="form-control" th:field="*{serniority}" />
+		    </div>
+		    <button type="submit" class="btn btn-primary">Save</button>
+		</form>
+        </div>
+    </div><!-- /.container -->
+
+    <footer th:replace="layoutDriver :: footer"></footer>
+</body>
+</html>

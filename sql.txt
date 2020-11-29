@@ -1,0 +1,36 @@
+use transport;
+create table if not exists coach(
+	id int(11) primary key auto_increment,
+	productor varchar(55),
+	platenumber varchar(55) not null,
+	color varchar(55),
+	model varchar(55),
+	numberofseats int(11) not null,
+	usedyear int(11) not null,
+	lastrepair date not null
+);
+create table if not exists driver(
+	id int(11) primary key auto_increment,
+	drivername varchar(55) not null,
+	idcard int not null,
+	drivercode varchar(55) not null,
+	license varchar(55) not null,
+    address varchar(55),
+	birth date,
+	serniority int(11) not null
+);
+create table if not exists route(
+	id int(11) primary key auto_increment,
+	finishpoint varchar(55) not null,
+	startpoint varchar(55) not null,
+	distance int(11) not null,
+    difficult int(11) not null
+);
+create table if not exists travel(
+	id int(11) primary key auto_increment,
+    drivername varchar(55) not null,
+    extradrivername varchar(55) not null,
+    totalcustomer int(11) not null,
+    priceticket int(20) not null,
+	routeid int(11) not null
+);
