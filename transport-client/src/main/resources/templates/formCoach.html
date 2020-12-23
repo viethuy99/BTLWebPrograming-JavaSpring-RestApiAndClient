@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layoutCoach :: head"></head>
+<body>
+    <nav th:replace="layoutCoach :: header"></nav>
+    <div class="container main-content form">
+        <div class="row">
+          <form action="#" th:action="@{/coach/save}" th:object="${coach}"
+		    method="POST" novalidate="novalidate">
+		    <input type="hidden" th:field="*{id}" />
+		    <div class="form-group">
+		        <label>productor</label> 
+		        <input type="text" class="form-control" th:field="*{productor}" />
+		    </div>
+		    <div class="form-group">
+		        <label>platenumber</label> 
+		        <input type="text" class="form-control" th:field="*{platenumber}" /> 
+		    </div>
+		    <div class="form-group">
+		        <label>color</label> 
+		        <input type="text" class="form-control" th:field="*{color}" />
+		    </div>
+		    <div class="form-group">
+		        <label>model</label> 
+		        <input type="text" class="form-control" th:field="*{model}" /> 
+		    </div>
+		    <div class="form-group">
+		        <label>numberofseats</label> 
+		        <input type="text" class="form-control" th:field="*{numberofseats}" />
+		    </div>
+		    <div class="form-group">
+		        <label>usedyear</label> 
+		        <input type="text" class="form-control" th:field="*{usedyear}" />
+		    </div>
+<!-- 		    <div class="form-group"> -->
+<!-- 		        <label>lastrepair</label>  -->
+<!-- 		        <input type="text" class="form-control" th:field="*{lastrepair}" /> -->
+<!-- 		    </div> -->
+		    <button type="submit" class="btn btn-primary">Save</button>
+		</form>
+        </div>
+    </div><!-- /.container -->
+
+    <footer th:replace="layoutCoach :: footer"></footer>
+</body>
+</html>

@@ -1,8 +1,8 @@
-package Transport.data;
+package Transport.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import Transport.travel;
+import Transport.data.travel;
 
 public interface travelRepository extends CrudRepository<travel, Long> {
 

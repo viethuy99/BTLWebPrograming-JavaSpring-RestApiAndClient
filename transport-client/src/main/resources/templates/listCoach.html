@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layoutCoach :: head"></head>
+<body>
+	<nav th:replace="layoutCoach :: header"></nav>
+
+	<div class="container main-content list">
+		<div th:if="${success}"
+			class="row alert alert-success alert-dismissible">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+			<span th:text="${success}"></span>
+		</div>
+		<div class="row">
+			<a th:href="@{/coach/create}" class="btn btn-success pull-left">
+				<span class="glyphicon glyphicon-plus"></span> Add new coach
+			</a>
+			<form class="form-inline pull-right" action="#"
+				th:action="@{/coach/search}" method="GET">
+				<div class="form-group">
+					<input type="text" class="form-control" name="s"
+						placeholder="Type productor..." />
+				</div>
+				<button type="submit" class="btn btn-primary">Search</button>
+			</form>
+		</div>
+		<th:block th:if="${#lists.isEmpty(coachs)}">
+			<h3>No Coach</h3>
+		</th:block>
+
+		<th:block th:unless="${#lists.isEmpty(coachs)}">
+			<div class="row">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>productor</th>
+							<th>platenumber</th>
+							<th>color</th>
+							<th>model</th>
+							<th>numberofseats</th>
+							<th>usedyear</th>
+<!-- 							<th>lastrepair</th> -->
+							<th>Edit</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr th:each="contact,iterStat : ${coachs}">
+							<td th:text="${iterStat.count}"></td>
+							<td th:text="${contact.productor}"></td>
+							<td th:text="${contact.platenumber}"></td>
+							<td th:text="${contact.color}"></td>
+							<td th:text="${contact.model}"></td>
+							<td th:text="${contact.numberofseats}"></td>
+							<td th:text="${contact.usedyear}"></td>
+<!-- 							<td th:text="${contact.lastrepair}"></td> -->
+							<td><a th:href="@{/coach/{id}/edit(id=${contact.id})}"><span
+									class="glyphicon glyphicon-pencil"></span></a></td>
+							<td><a th:href="@{/coach/{id}/delete(id=${contact.id})}"><span
+									class="glyphicon glyphicon-trash"></span></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</th:block>
+	</div>
+	<!-- /.container -->
+
+	<footer th:replace="layoutcoach :: footer"></footer>
+</body>
+</html>

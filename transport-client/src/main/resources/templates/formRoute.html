@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layoutRoute :: head"></head>
+<body>
+    <nav th:replace="layoutRoute :: header"></nav>
+    <div class="container main-content form">
+        <div class="row">
+          <form action="#" th:action="@{/route/save}" th:object="${route}"
+		    method="POST" novalidate="novalidate">
+		    <input type="hidden" th:field="*{id}" />
+<!-- 		    <div class="form-group"> -->
+<!-- 		        <label>Name</label>  -->
+<!-- 		        <input type="text" class="form-control" th:field="*{id}" />  -->
+<!-- 		    </div> -->
+		    <div class="form-group">
+		        <label>finishpoint</label> 
+		        <input type="text" class="form-control" th:field="*{finishpoint}" />
+		    </div>
+		    <div class="form-group">
+		        <label>startpoint</label> 
+		        <input type="text" class="form-control" th:field="*{startpoint}" /> 
+		    </div>
+		    <div class="form-group">
+		        <label>distance</label> 
+		        <input type="text" class="form-control" th:field="*{distance}" />
+		    </div>
+		    <div class="form-group">
+		        <label>difficult</label> 
+		        <input type="text" class="form-control" th:field="*{difficult}" /> 
+		    </div>
+		    <button type="submit" class="btn btn-primary">Save</button>
+		</form>
+        </div>
+    </div><!-- /.container -->
+
+    <footer th:replace="layoutRoute :: footer"></footer>
+</body>
+</html>

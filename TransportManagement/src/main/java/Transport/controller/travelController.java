@@ -1,4 +1,4 @@
-package Transport.api;
+package Transport.controller;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import Transport.travel;
-import Transport.data.travelRepository;
+import Transport.data.travel;
+import Transport.repository.travelRepository;
 
 import org.springframework.http.HttpStatus;
 
@@ -40,7 +40,7 @@ public class travelController {
 		return travelRepo.findAll();
 	}
 
-	@GetMapping("/search/{id}")
+	@GetMapping("/idx/{id}")
 	public travel SearchById(@PathVariable("id") Long id) {
 		Optional<travel> travelInfor = travelRepo.findById(id);
 		if (travelInfor.isPresent()) {
@@ -55,7 +55,7 @@ public class travelController {
 		return travelRepo.save(travel);
 	}
 
-	@DeleteMapping("/delete/{routeId}")
+	@DeleteMapping("/delete/{travelId}")
 	public void deleteTravel(@PathVariable("travelId") Long routeId) {
 		try {
 			travelRepo.deleteById(routeId);

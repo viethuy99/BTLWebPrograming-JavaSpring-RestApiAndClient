@@ -1,4 +1,4 @@
-package Transport;
+package Transport.data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,9 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor(force=true)
 public class route {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layoutRoute :: head"></head>
+<body>
+	<nav th:replace="layoutRoute :: header"></nav>
+
+	<div class="container main-content list">
+		<div th:if="${success}"
+			class="row alert alert-success alert-dismissible">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+			<span th:text="${success}"></span>
+		</div>
+		<div class="row">
+			<a th:href="@{/route/create}" class="btn btn-success pull-left">
+				<span class="glyphicon glyphicon-plus"></span> Add new route
+			</a>
+			<form class="form-inline pull-right" action="#"
+				th:action="@{/route/search}" method="GET">
+				<div class="form-group">
+					<input type="text" class="form-control" name="s"
+						placeholder="Type start point..." />
+				</div>
+				<button type="submit" class="btn btn-primary">Search</button>
+			</form>
+		</div>
+		<th:block th:if="${#lists.isEmpty(routes)}">
+			<h3>No route</h3>
+		</th:block>
+
+		<th:block th:unless="${#lists.isEmpty(routes)}">
+			<div class="row">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>start point</th>
+							<th>finish point</th>
+							
+							<th>distance</th>
+							<th>difficult</th>
+							<th>Edit</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="contact,iterStat : ${routes}">
+							<td th:text="${iterStat.count}"></td>
+<!-- 							<td th:text="${contact.id}"></td> -->
+							<td th:text="${contact.startpoint}"></td>
+							<td th:text="${contact.finishpoint}"></td>
+							
+							<td th:text="${contact.distance}"></td>
+							<td th:text="${contact.difficult}"></td>
+							<td><a th:href="@{/route/{id}/edit(id=${contact.id})}"><span
+									class="glyphicon glyphicon-pencil"></span></a></td>
+							<td><a th:href="@{/route/{id}/delete(id=${contact.id})}"><span
+									class="glyphicon glyphicon-trash"></span></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</th:block>
+	</div>
+	<!-- /.container -->
+
+	<footer th:replace="layoutRoute :: footer"></footer>
+</body>
+</html>

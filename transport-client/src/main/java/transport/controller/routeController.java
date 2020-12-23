@@ -17,69 +17,66 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import transport.data.driver;
-import transport.service.driverService;
+import transport.data.route;
+import transport.service.routeService;
 
 @Controller
-@RequestMapping("/driver")
-public class driverController {
+@RequestMapping("/route")
+public class routeController {
 	@Autowired
-	private driverService driverService;
+	private routeService routeService;
 	private RestTemplate rest = new RestTemplate();
 
 
 	@GetMapping()
 	public String index(Model model) {
-//		model.addAttribute("drivers", driverService.findAll());
-		List<driver> drivers =
-				Arrays.asList(rest.getForObject("http://localhost:8081/driver/search",driver[].class));
-		model.addAttribute("drivers", drivers);
-		return "listDriver";
+//		model.addAttribute("routes", routeService.findAll());
+		List<route> routes =
+				Arrays.asList(rest.getForObject("http://localhost:8081/route/search",route[].class));
+		model.addAttribute("routes", routes);
+		return "listRoute";
 	}
 
 	@GetMapping("/create")
 	public String create(Model model) {
-		model.addAttribute("driver", new driver());
-		return "formDriver";
+		model.addAttribute("route", new route());
+		return "formRoute";
 	}
+
 	@GetMapping("/{id}/edit")
 	public String edit(@PathVariable int id, Model model) {
-//		model.addAttribute("driver", driverService.findOne(id));
-		driver emp = rest.getForObject("http://localhost:8081/driver/idx/" + id,driver.class);
-		model.addAttribute("driver", emp);
-		return "formDriver";
+		model.addAttribute("route", routeService.findOne(id));
+		return "formRoute";
 	}
 
 	@PostMapping("/save")
-	public String save(@Valid driver emp, BindingResult result, RedirectAttributes redirect) {
+	public String save(@Valid route emp, BindingResult result, RedirectAttributes redirect) {
 		if (result.hasErrors()) {
-			return "formDriver";
+			return "formRoute";
 		}
-//		driverService.save(emp);
-		rest.postForObject("http://localhost:8081/driver", emp, driver.class);
+//		routeService.save(emp);
+		rest.postForObject("http://localhost:8081/route", emp, route.class);
 		redirect.addFlashAttribute("success", "Saved successfully!");
-		return "redirect:/driver";
+		return "redirect:/route";
 	}
 
 	
 	@GetMapping("/{id}/delete")
 	public String delete(@PathVariable int id, RedirectAttributes redirect) {
-//		driver emp = driverService.findOne(id); 
-//		driverService.delete(emp);
-		driver emp = rest.getForObject("http://localhost:8081/driver/idx/" + id,driver.class);
-		rest.delete("http://localhost:8081/driver/delete/{id}", emp.getId());
+		route emp = routeService.findOne(id); 
+//		routeService.delete(emp);
+		rest.delete("http://localhost:8081/route/delete/{id}", emp.getId());
 		redirect.addFlashAttribute("success", "Deleted successfully!");
-		return "redirect:/driver";
+		return "redirect:/route";
 	}
 
 	@GetMapping("/search")
 	public String search(@RequestParam("s") String s, Model model) {
 		if (s.equals("")) {
-			return "redirect:/driver";
+			return "redirect:/route";
 		}
-		List<driver> drivers =
-				Arrays.asList(rest.getForObject("http://localhost:8081/driver/search/" + s,driver[].class));
-		model.addAttribute("drivers", drivers);
-		return "listDriver";
+
+		model.addAttribute("routes", routeService.search(s));
+		return "listRoute";
 	}
 }

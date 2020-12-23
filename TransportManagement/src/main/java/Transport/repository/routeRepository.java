@@ -1,8 +1,8 @@
-package Transport.data;
+package Transport.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import Transport.route;
+import Transport.data.route;
 
 public interface routeRepository extends CrudRepository<route, Long> {
 

@@ -1,6 +1,7 @@
-package Transport;
+package Transport.data;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -13,6 +14,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Data
 @Entity
+@NoArgsConstructor(force=true)
 public class coach {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

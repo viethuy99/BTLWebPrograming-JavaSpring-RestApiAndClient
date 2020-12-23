@@ -1,4 +1,5 @@
-package Transport;
+package Transport.data;
+
 
 import java.util.Date;
 
@@ -6,12 +7,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@Table(name = "driver")
+@NoArgsConstructor(force=true)
 public class driver {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
@@ -24,14 +30,3 @@ public class driver {
 	private Long serniority;
 
 }
-//create table if not exists driver(
-//		id int(11) primary key auto_increment,
-//		driverName varchar(55) not null,
-//		idCard int not null,
-//		driverCode varchar(55) not null,
-//		license varchar(55) not null,
-//	    address varchar(55),
-//		birth date,
-//		seriority int(11) not null
-//	);
-

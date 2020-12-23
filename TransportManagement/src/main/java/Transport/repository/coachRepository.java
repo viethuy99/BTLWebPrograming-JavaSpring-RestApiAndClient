@@ -1,8 +1,8 @@
-package Transport.data;
+package Transport.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import Transport.coach;
+import Transport.data.coach;
 
 
 public interface coachRepository extends CrudRepository<coach, Long> {

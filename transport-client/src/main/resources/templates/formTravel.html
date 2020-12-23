@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layoutTravel :: head"></head>
+<body>
+    <nav th:replace="layoutTravel :: header"></nav>
+    <div class="container main-content form">
+        <div class="row">
+          <form action="#" th:action="@{/travel/save}" th:object="${travel}"
+		    method="POST" novalidate="novalidate">
+<!-- 		    <input type="hidden" th:field="*{id}" /> -->
+<!-- 		    <div class="form-group"> -->
+<!-- 		        <label>Name</label>  -->
+<!-- 		        <input type="text" class="form-control" th:field="*{id}" />  -->
+<!-- 		    </div> -->
+		    <div class="form-group">
+		        <label>id</label> 
+		        <input type="text" class="form-control" th:field="*{id}" />
+		    </div>
+		    <div class="form-group">
+		        <label>drivername</label> 
+		        <input type="text" class="form-control" th:field="*{drivername}" /> 
+		    </div>
+		    <div class="form-group">
+		        <label>extradrivername</label> 
+		        <input type="text" class="form-control" th:field="*{extradrivername}" />
+		    </div>
+		    <div class="form-group">
+		        <label>totalcustomer</label> 
+		        <input type="text" class="form-control" th:field="*{totalcustomer}" /> 
+		    </div>
+		    <div class="form-group">
+		        <label>priceticket</label> 
+		        <input type="text" class="form-control" th:field="*{priceticket}" />
+		    </div>
+<!-- 		    <div class="form-group"> -->
+<!-- 		        <label>birth</label>  -->
+<!-- 		        <input type="text" class="form-control" th:field="*{birth}" />  -->
+<!-- 		    </div> -->
+		    <div class="form-group">
+		        <label>routeid</label> 
+		        <input type="text" class="form-control" th:field="*{routeid}" />
+		    </div>
+		    <button type="submit" class="btn btn-primary">Save</button>
+		</form>
+        </div>
+    </div><!-- /.container -->
+
+    <footer th:replace="layoutTravel :: footer"></footer>
+</body>
+</html>
